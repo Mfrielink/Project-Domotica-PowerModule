@@ -1,0 +1,14 @@
+_readBuffer: CODE, 27 0 57
+_initSPI: CODE, 359 0 14
+_readRegisters: CODE, 135 0 47
+_IOC_ISR: CODE, 229 0 47
+_main: CODE, 84 0 51
+_PWM_init: CODE, 310 0 30
+__initialization: CODE, 19 0 5
+_motor_stop: CODE, 373 0 10
+_motor_start: CODE, 182 0 47
+_stopper_init: CODE, 340 0 19
+_initMaster: CODE, 276 0 34
+_transmitData: CODE, 383 0 6
+_Motor_control_init: CODE, 389 0 6
+Total: 373
