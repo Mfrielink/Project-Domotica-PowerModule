@@ -140,25 +140,47 @@ void readBuffer()
     PORTC |= 0x40;
     PORTC &= ~(0x40);
     transmitData(0x02); //write
-    transmitData(0x2C);
-    transmitData(0x00);
+    transmitData(0x2C); //to address 2Ch
+    transmitData(0x00); //clear interrupt bits
 
-    readRegisters(0x66, 1);
+    PORTC |= 0x40;
+    PORTC &= ~(0x40);
+    transmitData(0x03); //read
+    transmitData(0x66); //address 66h
+    transmitData(0x00); //receive 1st byte
 
-//    PORTC |= 0x40;
-//    PORTC &= ~(0x40);
-//    transmitData(0x03); //read
-//    transmitData(0x66); //rec buff0 dbyte0
-//    transmitData(0x00);
-
-    if (SSPBUF == 0xDD)
+    for (i = 0; i<8; i++)
     {
-        motor_start(1, 0x01);
-    }
+        if (SSPBUF == 0xAA)
+        {
+            transmitData(0x00);
+            i++;
+            if(i < 8)
+            {
+                speed = SSPBUF;
+            }
+        }
 
-    if (SSPBUF == 0xEE)
-    {
-        motor_start(0, 0x7F);
+        else if (SSPBUF == 0xBB)
+        {
+            motor_start(direction, speed);
+        }
+
+        else if (SSPBUF == 0xCC)
+        {
+            motor_stop();
+        }
+
+        else if (SSPBUF == 0xDD)
+        {
+            direction = 1;
+        }
+
+        else if (SSPBUF == 0xEE)
+        {
+            direction = 0;
+        }
+
+        transmitData(0x00);
     }
 }
-
