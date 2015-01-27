@@ -37,7 +37,8 @@ SUBDIRS :=
 
 # Add inputs and outputs from these tool invocations to the build variables 
 C_SRCS +=  \
-../GccApplication1.c
+../GccApplication1.c \
+../hello_world.c
 
 
 PREPROCESSING_SRCS += 
@@ -47,16 +48,20 @@ ASM_SRCS +=
 
 
 OBJS +=  \
-GccApplication1.o
+GccApplication1.o \
+hello_world.o
 
 OBJS_AS_ARGS +=  \
-GccApplication1.o
+GccApplication1.o \
+hello_world.o
 
 C_DEPS +=  \
-GccApplication1.d
+GccApplication1.d \
+hello_world.d
 
 C_DEPS_AS_ARGS +=  \
-GccApplication1.d
+GccApplication1.d \
+hello_world.d
 
 OUTPUT_FILE_PATH +=GccApplication1.elf
 
@@ -72,6 +77,8 @@ LINKER_SCRIPT_DEP+=
 
 
 # AVR32/GNU C Compiler
+
+
 
 
 
