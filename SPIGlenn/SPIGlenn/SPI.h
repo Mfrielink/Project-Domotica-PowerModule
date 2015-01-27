@@ -36,5 +36,6 @@ void setData(char buffer, char DLC, long long databytes);
 void transmitBuffer(char buffer, char priority);
 void readRegisters(char startAddress, int amountOfAddresses);
 char receiveData();
+void testMotor();
 
 #endif /* SPI_H_ */
