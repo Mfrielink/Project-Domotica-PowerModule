@@ -132,3 +132,31 @@ char receiveData()
 	while(!(SPSR & (1<<SPIF))); //Wait for the reception to be complete
 	return SPDR;				//Return the Data Register
 }
+
+void testMotor()
+{
+	PORTB |= 0x1;
+	PORTB &= ~(0x1);
+	fillStandardDataFrame(0, 0x00, 0x00);
+	setData(0, 1, 0xDD);
+	transmitBuffer(0, 0x3);
+	//wait 10s
+	PORTB |= 0x1;
+	PORTB &= ~(0x1);
+	fillStandardDataFrame(0, 0x00, 0x00);
+	setData(0, 1, 0xCC);
+	transmitBuffer(0, 0x3);
+	//wait 1s
+	PORTB |= 0x1;
+	PORTB &= ~(0x1);
+	fillStandardDataFrame(0, 0x00, 0x00);
+	setData(0, 1, 0xEE);
+	transmitBuffer(0, 0x3);
+	//wait 10s
+	PORTB |= 0x1;
+	PORTB &= ~(0x1);
+	fillStandardDataFrame(0, 0x00, 0x00);
+	setData(0, 1, 0xCC);
+	transmitBuffer(0, 0x3);
+	//wait 1s
+}
